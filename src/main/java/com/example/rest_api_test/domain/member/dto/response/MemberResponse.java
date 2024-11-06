@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
-public class MemberCreateResponse {
+public class MemberResponse {
     private Long id;
     private String username;
     private LocalDateTime createdDate;
 
-    public MemberCreateResponse(MemberDTO memberDTO) {
+    public MemberResponse(MemberDTO memberDTO) {
         this.id = memberDTO.getId();;
         this.username = memberDTO.getUsername();
         this.createdDate = memberDTO.getCreatedDate();
