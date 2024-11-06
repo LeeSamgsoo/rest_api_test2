@@ -1,3 +1,9 @@
+# 특이사항
+- 게시글 생성, 수정, 삭제 할 때 로그인 상태여야 가능하게 했습니다.
+- 로그인은 spring securit나 jwt를 쓰지 않고 간단하게 쿠키에 username을 저장하는 방식으로 했습니다.
+
+# API 명세서
+
 ![image](https://github.com/user-attachments/assets/89c2f1b9-5def-4370-a04b-56b092fe0762)
 
 ![image](https://github.com/user-attachments/assets/8e33f91a-338c-404f-a420-73aa283ac022)
