@@ -9,6 +9,7 @@ import com.example.rest_api_test.domain.article.service.ArticleService;
 import com.example.rest_api_test.domain.member.entity.Member;
 import com.example.rest_api_test.domain.member.service.MemberService;
 import com.example.rest_api_test.global.rs_data.RsData;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ public class ApiV1ArticleController {
     private final MemberService memberService;
 
     @GetMapping("")
+    @Operation(summary = "게시글 다건 조회")
     public RsData<ArticlesResponse> readArticles() {
         return RsData.of("200", "게시글 다건 조회 성공",
                 new ArticlesResponse(this.articleService.readAll().stream().map(ArticleDTO::new).toList())
@@ -32,6 +34,7 @@ public class ApiV1ArticleController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "게시글 단건 조회")
     public RsData<ArticleResponse> readArticle(@PathVariable("id") Long id) {
         Article article = this.articleService.readOne(id);
         if (article == null) {
@@ -44,6 +47,7 @@ public class ApiV1ArticleController {
     }
 
     @PostMapping("")
+    @Operation(summary = "게시글 생성")
     public RsData<ArticleResponse> createArticle(@Valid @RequestBody ArticleCURequest articleCURequest,
                                                  HttpServletRequest req) {
         Cookie[] cookies = req.getCookies();
@@ -67,6 +71,7 @@ public class ApiV1ArticleController {
     }
 
     @PatchMapping("/{id}")
+    @Operation(summary = "게시글 수정")
     public RsData<ArticleResponse> modifyArticle(@PathVariable("id") Long id,
                                                  @Valid @RequestBody ArticleCURequest articleCURequest,
                                                  HttpServletRequest req) {
@@ -101,6 +106,7 @@ public class ApiV1ArticleController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "게시글 삭제")
     public RsData<ArticleResponse> deleteArticle(@PathVariable("id") Long id, HttpServletRequest req) {
         Cookie[] cookies = req.getCookies();
         String username = "";

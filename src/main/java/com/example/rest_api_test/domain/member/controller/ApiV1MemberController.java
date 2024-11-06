@@ -6,6 +6,7 @@ import com.example.rest_api_test.domain.member.dto.response.MemberResponse;
 import com.example.rest_api_test.domain.member.entity.Member;
 import com.example.rest_api_test.domain.member.service.MemberService;
 import com.example.rest_api_test.global.rs_data.RsData;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ public class ApiV1MemberController {
     private final MemberService memberService;
 
     @PostMapping("/join")
+    @Operation(summary = "회원가입")
     public RsData<MemberResponse> join(@Valid @RequestBody MemberRequest memberRequest) {
         return RsData.of("200", "회원가입 성공",
                 new MemberResponse(
@@ -30,6 +32,7 @@ public class ApiV1MemberController {
     }
 
     @PostMapping("/login")
+    @Operation(summary = "로그인")
     public RsData<MemberResponse> login(@Valid @RequestBody MemberRequest memberRequest,
                                         HttpServletResponse res) {
         Member member = this.memberService.getMember(memberRequest.getUsername());
@@ -48,6 +51,7 @@ public class ApiV1MemberController {
     }
 
     @GetMapping("/logout")
+    @Operation(summary = "로그아웃")
     public RsData<MemberResponse> logout(HttpServletResponse res) {
         Cookie cookie = new Cookie("username", null);
         cookie.setMaxAge(0);
