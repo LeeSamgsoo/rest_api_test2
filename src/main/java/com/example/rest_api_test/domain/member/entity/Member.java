@@ -1,6 +1,7 @@
 package com.example.rest_api_test.domain.member.entity;
 
 import com.example.rest_api_test.global.jpa.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,5 +17,6 @@ import lombok.experimental.SuperBuilder;
 @ToString(callSuper = true)
 public class Member extends BaseEntity {
     private String username;
+    @JsonIgnore
     private String password;
 }

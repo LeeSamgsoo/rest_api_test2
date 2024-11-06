@@ -1,7 +1,9 @@
 package com.example.rest_api_test.domain.article.entity;
 
+import com.example.rest_api_test.domain.member.entity.Member;
 import com.example.rest_api_test.global.jpa.BaseEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +19,6 @@ import lombok.experimental.SuperBuilder;
 public class Article extends BaseEntity {
     private String subject;
     private String content;
+    @ManyToOne
+    private Member member;
 }
